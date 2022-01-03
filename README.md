@@ -55,5 +55,3 @@ scale: 2
 
 Time to time upgrading, mainly for my own purpose, anyway feel free to reuse ! 
 PRs are welcome ;).
-
-Thanks to [SNoof85](https://github.com/SNoof85/lovelace-tempometer-gauge-card) for inspiration.
