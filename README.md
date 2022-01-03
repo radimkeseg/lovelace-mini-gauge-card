@@ -19,4 +19,41 @@ Add it as a custom card to your lovelace : `'custom:mini-gauge-card'`.
 
 ## Options
 ### Card options
-//todo
+| **Option** | **Type** | **Description** |
+|-|:-:|-|
+| `entity` ***(required)*** | string | an entity to track, make sure the entity state is a number |
+| `min` ***(required)*** | number | minimum value of the gauge |
+| `max` ***(required)*** | number | maximum value of the gauge |
+| `measurement` | string | custom unit of measurement |
+| `scale` | number | sizing factor, default = 1 |
+| `decimals` | number | decimal precision of entity value. |
+
+An example for a picture-element:
+```yaml
+type: picture-elements
+elements:
+  - type: custom:mini-gauge-card
+    max: 30
+    min: 15
+    measurement: °C
+    entity: sensor.esp_osmo_01_temp
+    scale: 1
+    style:
+      top: 20%
+      left: 63%
+```
+
+An example for a card:
+```yaml
+type: custom:thermo-valve-gauge
+max: 25
+min: 15
+measurement: °C
+entity: sensor.esp_osmo_01_temp
+scale: 2
+```
+
+Time to time upgrading, mainly for my own purpose, anyway feel free to reuse ! 
+PRs are welcome ;).
+
+Thanks to [SNoof85](https://github.com/SNoof85/lovelace-tempometer-gauge-card) for inspiration.
