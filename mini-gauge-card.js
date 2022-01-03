@@ -63,10 +63,36 @@ class MiniGaugeCard extends HTMLElement {
     content.innerHTML = `
     <div class="container">
 		<div class="mini-gauge-card">
-		    <svg viewBox="0 0 200 160" style="transform-origin:left top;">
+		    <svg viewBox="0 0 200 160" style="transform-origin:left top;">		
   <g
      id="layer1"
      transform="translate(0,-80)">
+    
+	<text
+       style="font-style:normal;font-weight:normal;font-size:10px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:#888888;stroke-width:0.2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="40"
+       y="158"
+       id="mini-gauge-card-min"
+	   text-anchor="middle">?</text>
+    <text
+       style="font-style:normal;font-weight:normal;font-size:10px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:#888888;stroke-width:0.2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="150"
+       y="158"
+       id="mini-gauge-card-max"
+	   text-anchor="middle">?</text>
+    <text
+       style="font-style:normal;font-weight:bold;font-size:20px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="95"
+       y="120"
+       id="mini-gauge-card-mean"
+	   text-anchor="middle">?</text>	 
+    <text
+       style="font-style:normal;font-weight:bold;font-size:12px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="95"
+       y="158"
+       id="mini-gauge-card-name"
+	   text-anchor="middle">?</text>
+	   
     <path
        style="fill:none;stroke:#aaaaaa;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2.5, 6;stroke-dashoffset:0;stroke-opacity:1"
        d="m 40,140 c 0,-72 110,-72 110,0"
@@ -87,26 +113,8 @@ class MiniGaugeCard extends HTMLElement {
        id="dot"
        cx="95"
        cy="140"
-       r="2.5" />
-    <text
-       style="font-style:normal;font-weight:normal;font-size:10px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:0.2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="40"
-       y="158"
-       id="mini-gauge-card-min"
-	   text-anchor="middle">?</text>
-    <text
-       style="font-style:normal;font-weight:normal;font-size:10px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:0.2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="150"
-       y="158"
-       id="mini-gauge-card-max"
-	   text-anchor="middle">?</text>
-    <text
-       style="font-style:normal;font-weight:normal;font-size:10px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:0.2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="100"
-       y="158"
-       id="mini-gauge-card-mean"
-	   text-anchor="middle">?</text>	 
-  </g>
+       r="2.5" />	 
+   </g>
 			</svg>
 		</div>	
 	</div>	
@@ -187,14 +195,14 @@ class MiniGaugeCard extends HTMLElement {
       }
   }
 
-	/*if (entityState !== this._entityState)*/ {
+	if (entityState !== this._entityState) {
 	  var mean = this._getEntityStateValue(hass.states[config.entity]);	  
-      root.getElementById("mini-gauge-card-mean").textContent = `${mean}${measurement}`;
+      root.getElementById("mini-gauge-card-mean").textContent = `${entityState}${measurement}`;
       const rot = this._translateRotation(mean, config);
       root.getElementById("mini-gauge-card-hand").style.transform = `rotate(${rot}deg)`;
 
 	  var friendly_name = this._getEntityStateValue(hass.states[config.entity], "friendly_name");
-//      root.getElementById("mini-gauge-card-friendly_name").textContent = `${friendly_name}`;
+      root.getElementById("mini-gauge-card-name").textContent = `${friendly_name}`;
 
       this._entityState = entityState;		
     }
