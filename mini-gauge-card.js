@@ -57,7 +57,10 @@ class MiniGaugeCard extends HTMLElement {
 		#mini-gauge-card-hand, #mini-gauge-card-bar{
 		  transition-duration: 2s;
 		  transform-origin: 95px 140px;
-		}	    
+		}	
+      .mini-gauge-card-text{
+		  fill: var(--primary-text-color);
+	  }		  
     `;
 	
     content.innerHTML = `
@@ -79,26 +82,26 @@ class MiniGaugeCard extends HTMLElement {
        id="mini-gauge-card-bar-line" clip-path="url(#mini-gauge-card-bar)" fill="red"/>
 	   
     
-	<text
-       style="font-style:normal;font-weight:normal;font-size:10px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:#888888;stroke-width:0.2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+	<text class="mini-gauge-card-text"
+       style="font-style:normal;font-weight:normal;font-size:10px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;"
        x="40"
        y="158"
        id="mini-gauge-card-min"
 	   text-anchor="middle">?</text>
-    <text
-       style="font-style:normal;font-weight:normal;font-size:10px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:#888888;stroke-width:0.2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    <text class="mini-gauge-card-text"
+       style="font-style:normal;font-weight:normal;font-size:10px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;"
        x="150"
        y="158"
        id="mini-gauge-card-max"
 	   text-anchor="middle">?</text>
-    <text
-       style="font-style:normal;font-weight:bold;font-size:20px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.5"
+    <text class="mini-gauge-card-text"
+       style="font-style:normal;font-weight:bold;font-size:20px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;"
        x="95"
        y="120"
        id="mini-gauge-card-mean"
 	   text-anchor="middle">?</text>	 
-    <text
-       style="font-style:normal;font-weight:bold;font-size:12px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.5"
+    <text class="mini-gauge-card-text"
+       style="font-style:normal;font-weight:bold;font-size:12px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;"
        x="95"
        y="158"
        id="mini-gauge-card-name"
