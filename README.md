@@ -49,10 +49,10 @@ elements:
     measurement: °C
     entity: sensor.esp_osmo_01_temp
     scale: 1
-	severity:
-	  green: 20
-	  yellow: 25
-	  red: 28	
+    severity:
+      green: 20
+      yellow: 25
+      red: 28	
     style:
       top: 20%
       left: 63%
