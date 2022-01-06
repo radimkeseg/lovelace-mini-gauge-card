@@ -3,6 +3,7 @@
 A Home Assistant lovelace custom mini gauge card for any measurement.
 
 ![mini gauge card](https://github.com/radimkeseg/lovelace-mini-gauge-card/blob/main/images/mini-gauge-card.png)
+
 ![mini gauge card elements](https://github.com/radimkeseg/lovelace-mini-gauge-card/blob/main/images/mini-gauge-card-elements.png)
 
 
