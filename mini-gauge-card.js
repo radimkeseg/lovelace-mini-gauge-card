@@ -69,7 +69,7 @@ class MiniGaugeCard extends HTMLElement {
 		    <svg viewBox="0 0 200 160" style="transform-origin:left top;">		
   <g
      id="layer1"
-     transform="translate(0,-80)">
+     transform="translate(0,-40)">
 
 	<clipPath id="mini-gauge-card-bar" style="transition-duration: 2s">
 	   <!-- the rotate(?deg) is about to be dynamically updated -->
