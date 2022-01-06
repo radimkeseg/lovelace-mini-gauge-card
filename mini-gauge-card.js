@@ -1,4 +1,4 @@
-console.info(`%c MINI-GAUGE-CARD \n%c       v0.1-beta `, 'color: orange; font-weight: bold; background: black', 'color: white; font-weight: bold; background: dimgray');
+console.info(`%c MINI-GAUGE-CARD \n%c       v0.2-beta `, 'color: orange; font-weight: bold; background: black', 'color: white; font-weight: bold; background: dimgray');
 class MiniGaugeCard extends HTMLElement {
   constructor() {
     super();
@@ -54,7 +54,7 @@ class MiniGaugeCard extends HTMLElement {
         transform: translate(-50%, 0%);
       }	  
 	  
-		#mini-gauge-card-hand{
+		#mini-gauge-card-hand, #mini-gauge-card-bar{
 		  transition-duration: 2s;
 		  transform-origin: 95px 140px;
 		}	    
@@ -67,6 +67,17 @@ class MiniGaugeCard extends HTMLElement {
   <g
      id="layer1"
      transform="translate(0,-80)">
+
+	<clipPath id="mini-gauge-card-bar" style="transition-duration: 2s">
+	   <!-- the rotate(?deg) is about to be dynamically updated -->
+	   <path style="fill:#ffffff;stroke:none;fill-opacity:1" d="M 35,140 H 155 c 0,0 0,60 -60,60 -60,0 -60,-60 -60,-60"/>
+	</clipPath>	
+	 
+    <path
+       style="fill:none;stroke:#ff0000;stroke-width:5;stroke-opacity:1"
+       d="m 40,140 c 0,-72 110,-72 110,0"
+       id="mini-gauge-card-bar-line" clip-path="url(#mini-gauge-card-bar)" fill="red"/>
+	   
     
 	<text
        style="font-style:normal;font-weight:normal;font-size:10px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:#888888;stroke-width:0.2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -156,7 +167,41 @@ class MiniGaugeCard extends HTMLElement {
   _translateRotation(value, config) {
     return 180*((value - config.min) / (config.max - config.min));
   }
-
+  
+  _computeSeverity(stateValue, sections) {
+    let numberValue = Number(stateValue);
+    const severityMap = {
+      red: "var(--label-badge-red)",
+      green: "var(--label-badge-green)",
+      yellow: "var(--label-badge-yellow)",
+      normal: "var(--label-badge-blue)",
+    };
+    if (!sections) return severityMap["normal"];
+    let sortable = [];
+    for (let severity in sections) {
+      sortable.push([severity, sections[severity]]);
+    }
+    sortable.sort((a, b) => { return a[1] - b[1] });
+    if (numberValue >= sortable[0][1] && numberValue < sortable[1][1]) {
+      return severityMap[sortable[0][0]];
+    }
+    if (numberValue >= sortable[1][1] && numberValue < sortable[2][1]) {
+      return severityMap[sortable[1][0]];
+    }
+    if (sortable.length === 4) {
+      if (numberValue >= sortable[2][1] && numberValue < sortable[3][1]) {
+        return severityMap[sortable[2][0]];
+      }
+      if (numberValue > sortable[3][1]) {
+        return severityMap["normal"]
+      }
+    } else {
+      if (numberValue >= sortable[2][1]) {
+        return severityMap[sortable[2][0]];
+      }
+    }
+    return severityMap["normal"];
+  }
   _getEntityStateValue(entity, attribute) { 
     if (!attribute) {
       return entity.state;
@@ -200,8 +245,10 @@ class MiniGaugeCard extends HTMLElement {
       root.getElementById("mini-gauge-card-mean").textContent = `${entityState}${measurement}`;
       const rot = this._translateRotation(mean, config);
       root.getElementById("mini-gauge-card-hand").style.transform = `rotate(${rot}deg)`;
+      root.getElementById("mini-gauge-card-bar").style.transform = `rotate(${rot}deg)`;
+	  root.getElementById("mini-gauge-card-bar-line").style.stroke = this._computeSeverity(entityState, config.severity);
 
-	  var friendly_name = this._getEntityStateValue(hass.states[config.entity], "friendly_name");
+	  var friendly_name = config.title ? config.title : this._getEntityStateValue(hass.states[config.entity], "friendly_name");
       root.getElementById("mini-gauge-card-name").textContent = `${friendly_name}`;
 
       this._entityState = entityState;		

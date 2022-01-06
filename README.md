@@ -28,6 +28,16 @@ Add it as a custom card to your lovelace : `'custom:mini-gauge-card'`.
 | `measurement` | string | custom unit of measurement |
 | `scale` | number | sizing factor, default = 1 |
 | `decimals` | number | decimal precision of entity value. |
+| `severity` | [severity object](#severity-object) | Severity map to change the gauge color. |
+
+#### Severity object
+| **Option** | **Type** | **Description** |
+|-|:-:|-|
+| green ***(required)*** | number | Value for the color green.
+| yellow ***(required)*** | number | Value for the color yellow.
+| red ***(required)*** | number | Value for the color red.
+| max | number | Maximum value of the last step, normal color will be rendered above
+
 
 An example for a picture-element:
 ```yaml
@@ -39,6 +49,10 @@ elements:
     measurement: °C
     entity: sensor.esp_osmo_01_temp
     scale: 1
+	severity:
+	  green: 20
+	  yellow: 25
+	  red: 28	
     style:
       top: 20%
       left: 63%
