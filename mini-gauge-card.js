@@ -56,7 +56,7 @@ class MiniGaugeCard extends HTMLElement {
 	  
 		#mini-gauge-card-hand, #mini-gauge-card-bar{
 		  transition-duration: 2s;
-		  transform-origin: 95px 140px;
+		  transform-origin: 100px 140px;
 		}	
       .mini-gauge-card-text{
 		  fill: var(--primary-text-color);
@@ -69,63 +69,63 @@ class MiniGaugeCard extends HTMLElement {
 		    <svg viewBox="0 0 200 160" style="transform-origin:left top;">		
   <g
      id="layer1"
-     transform="translate(0,-40)">
+     transform="translate(0,-45)">
 
 	<clipPath id="mini-gauge-card-bar" style="transition-duration: 2s">
 	   <!-- the rotate(?deg) is about to be dynamically updated -->
-	   <path style="fill:#ffffff;stroke:none;fill-opacity:1" d="M 35,140 H 155 c 0,0 0,60 -60,60 -60,0 -60,-60 -60,-60"/>
+	   <path style="fill:#ffffff;stroke:none;fill-opacity:1" d="M 40,140 H 155 c 0,0 0,60 -60,60 -60,0 -60,-60 -60,-60"/>
 	</clipPath>	
 	 
     <path
        style="fill:none;stroke:#ff0000;stroke-width:5;stroke-opacity:1"
-       d="m 40,140 c 0,-72 110,-72 110,0"
+       d="m 45,140 c 0,-72 110,-72 110,0"
        id="mini-gauge-card-bar-line" clip-path="url(#mini-gauge-card-bar)" fill="red"/>
 	   
     
 	<text class="mini-gauge-card-text"
        style="font-style:normal;font-weight:normal;font-size:10px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;"
-       x="40"
+       x="45"
        y="158"
        id="mini-gauge-card-min"
 	   text-anchor="middle">?</text>
     <text class="mini-gauge-card-text"
        style="font-style:normal;font-weight:normal;font-size:10px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;"
-       x="150"
+       x="155"
        y="158"
        id="mini-gauge-card-max"
 	   text-anchor="middle">?</text>
     <text class="mini-gauge-card-text"
        style="font-style:normal;font-weight:bold;font-size:20px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;"
-       x="95"
+       x="100"
        y="120"
        id="mini-gauge-card-mean"
 	   text-anchor="middle">?</text>	 
     <text class="mini-gauge-card-text"
        style="font-style:normal;font-weight:bold;font-size:12px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;"
-       x="95"
+       x="100"
        y="158"
        id="mini-gauge-card-name"
 	   text-anchor="middle">?</text>
 	   
     <path
        style="fill:none;stroke:#aaaaaa;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2.5, 6;stroke-dashoffset:0;stroke-opacity:1"
-       d="m 40,140 c 0,-72 110,-72 110,0"
+       d="m 45,140 c 0,-72 110,-72 110,0"
        id="gauge" />
    <g
        id="mini-gauge-card-hand">
       <path
          id="mini-gauge-card-hand-shape"
-         d="m 105,140 -10,5 -55,-5 55,-5 z"
+         d="m 110,140 -10,5 -55,-5 55,-5 z"
          style="fill:#222222;fill-opacity:1;stroke:#dddddd;stroke-width:1px;stroke-opacity:1" />
       <path
          id="mini-gauge-card-hand-shade"
-         d="m 105,140 -10,5 -55,-5 C 62,140 105,140 105,140 Z"
+         d="m 110,140 -10,5 -55,-5 C 62,140 105,140 105,140 Z"
          style="fill:#888888;fill-opacity:1;stroke:none;" />
     </g>
     <circle
        style="opacity:1;fill:#666666;fill-opacity:1;fill-rule:nonzero;stroke:#999999;stroke-width:2;stroke-opacity:1"
        id="dot"
-       cx="95"
+       cx="100"
        cy="140"
        r="2.5" />	 
    </g>
@@ -233,15 +233,19 @@ class MiniGaugeCard extends HTMLElement {
 
 	root.getElementById("mini-gauge-card-min").innerHTML = config.min;
 	root.getElementById("mini-gauge-card-max").innerHTML = config.max;
+
+    if(config.stroke !== undefined){
+	  root.getElementById("mini-gauge-card-bar-line").style['stroke-width'] = config.stroke;
+	}
     
-  // Set decimal precision
-  if (config.decimals !== undefined) {
-      // Only allow positive numbers
-      if (config.decimals >= 0) {
-        entityState = Math.round(parseFloat(entityState) * (10 ** config.decimals)) / (10 ** config.decimals)   // Round (https://stackoverflow.com/a/11832950)
-        entityState = entityState.toFixed(config.decimals)  // Add trailing zeroes if applicable        
-      }
-  }
+    // Set decimal precision
+    if (config.decimals !== undefined) {
+	  // Only allow positive numbers
+	  if (config.decimals >= 0) {
+		entityState = Math.round(parseFloat(entityState) * (10 ** config.decimals)) / (10 ** config.decimals)   // Round (https://stackoverflow.com/a/11832950)
+		entityState = entityState.toFixed(config.decimals)  // Add trailing zeroes if applicable        
+	  }
+    }
 
 	if (entityState !== this._entityState) {
 	  var mean = this._getEntityStateValue(hass.states[config.entity]);	  

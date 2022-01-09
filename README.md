@@ -31,6 +31,7 @@ Add it as a custom card to your lovelace : `'custom:mini-gauge-card'`.
 | `measurement` | string | custom unit of measurement |
 | `scale` | number | sizing factor, default = 1 |
 | `decimals` | number | decimal precision of entity value. |
+| `stroke` | number | width of the curved bar indicator, default = 5 |
 | `severity` | [severity object](#severity-object) | Severity map to change the gauge color. |
 
 #### Severity object
