@@ -73,7 +73,7 @@ class MiniGaugeCard extends HTMLElement {
 
 	<clipPath id="mini-gauge-card-bar" style="transition-duration: 2s">
 	   <!-- the rotate(?deg) is about to be dynamically updated -->
-	   <path style="fill:#ffffff;stroke:none;fill-opacity:1" d="M 40,140 H 155 c 0,0 0,60 -60,60 -60,0 -60,-60 -60,-60"/>
+	   <path style="fill:#ffffff;stroke:none;fill-opacity:1" d="M 40,140 H 160 c 0,0 0,60 -60,60 -60,0 -60,-60 -60,-60"/>
 	</clipPath>	
 	 
     <path
