@@ -168,6 +168,8 @@ class MiniGaugeCard extends HTMLElement {
   }
 
   _translateRotation(value, config) {
+	if( value < config.min ) value = config.min;  
+	if( value > config.max ) value = config.max; 	  
     return 180*((value - config.min) / (config.max - config.min));
   }
   
