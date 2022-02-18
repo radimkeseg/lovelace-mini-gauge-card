@@ -37,10 +37,16 @@ Add it as a custom card to your lovelace : `'custom:mini-gauge-card'`.
 #### Severity object
 | **Option** | **Type** | **Description** |
 |-|:-:|-|
-| `green` ***(required)*** | number | Value for the color green.
-| `yellow` ***(required)*** | number | Value for the color yellow.
-| `red` ***(required)*** | number | Value for the color red.
-| `max` | number | Maximum value of the last step, normal color will be rendered above
+| `green` | number | Value for the color green.
+| `green_L` | number | Value for the color green.
+| `green_H` | number | Value for the color green.
+| `yellow` | number | Value for the color yellow.
+| `yellow_L` | number | Value for the color yellow.
+| `yellow_H` | number | Value for the color yellow.
+| `red` | number | Value for the color red.
+| `red_L` | number | Value for the color red.
+| `red_H` | number | Value for the color red.
+
 
 
 An example for a picture-element:

@@ -175,37 +175,33 @@ class MiniGaugeCard extends HTMLElement {
   
   _computeSeverity(stateValue, sections) {
     let numberValue = Number(stateValue);
-    const severityMap = {
-      red: "var(--label-badge-red)",
-      green: "var(--label-badge-green)",
-      yellow: "var(--label-badge-yellow)",
-      normal: "var(--label-badge-blue)",
-    };
+	const severityMap = {
+		red: "var(--label-badge-red)",
+		red_L: "var(--label-badge-red)",
+		red_H: "var(--label-badge-red)",
+		green: "var(--label-badge-green)",
+		green_L: "var(--label-badge-green)",
+		green_H: "var(--label-badge-green)",
+		yellow: "var(--label-badge-yellow)",
+		yellow_L: "var(--label-badge-yellow)",
+		yellow_H: "var(--label-badge-yellow)",
+		normal: "var(--label-badge-blue)",
+	};
     if (!sections) return severityMap["normal"];
-    let sortable = [];
-    for (let severity in sections) {
+    
+	let sortable = [];
+	for (let severity in sections) {
       sortable.push([severity, sections[severity]]);
     }
     sortable.sort((a, b) => { return a[1] - b[1] });
-    if (numberValue >= sortable[0][1] && numberValue < sortable[1][1]) {
-      return severityMap[sortable[0][0]];
-    }
-    if (numberValue >= sortable[1][1] && numberValue < sortable[2][1]) {
-      return severityMap[sortable[1][0]];
-    }
-    if (sortable.length === 4) {
-      if (numberValue >= sortable[2][1] && numberValue < sortable[3][1]) {
-        return severityMap[sortable[2][0]];
-      }
-      if (numberValue > sortable[3][1]) {
-        return severityMap["normal"]
-      }
-    } else {
-      if (numberValue >= sortable[2][1]) {
-        return severityMap[sortable[2][0]];
-      }
-    }
-    return severityMap["normal"];
+	
+	let retVal = severityMap["normal"];
+	for (let i = 0; i < sortable.length; i++){
+	  if (numberValue >= sortable[i][1]) {
+		 retVal = severityMap[sortable[i][0]];
+	  } 
+	}
+	return retVal;  
   }
   _getEntityStateValue(entity, attribute) { 
     if (!attribute) {
@@ -250,14 +246,13 @@ class MiniGaugeCard extends HTMLElement {
     }
 
 	if (entityState !== this._entityState) {
-	  var mean = this._getEntityStateValue(hass.states[config.entity]);	  
       root.getElementById("mini-gauge-card-mean").textContent = `${entityState}${measurement}`;
       const rot = this._translateRotation(entityState, config);
       root.getElementById("mini-gauge-card-hand").style.transform = `rotate(${rot}deg)`;
       root.getElementById("mini-gauge-card-bar").style.transform = `rotate(${rot}deg)`;
 	  root.getElementById("mini-gauge-card-bar-line").style.stroke = this._computeSeverity(entityState, config.severity);
 
-	  var friendly_name = config.title ? config.title : this._getEntityStateValue(hass.states[config.entity], "friendly_name");
+	  var friendly_name = config.title!== undefined ? config.title : this._getEntityStateValue(hass.states[config.entity], "friendly_name");
       root.getElementById("mini-gauge-card-name").textContent = `${friendly_name}`;
 
       this._entityState = entityState;		
