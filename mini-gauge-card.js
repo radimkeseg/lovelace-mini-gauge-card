@@ -252,7 +252,7 @@ class MiniGaugeCard extends HTMLElement {
 	if (entityState !== this._entityState) {
 	  var mean = this._getEntityStateValue(hass.states[config.entity]);	  
       root.getElementById("mini-gauge-card-mean").textContent = `${entityState}${measurement}`;
-      const rot = this._translateRotation(mean, config);
+      const rot = this._translateRotation(entityState, config);
       root.getElementById("mini-gauge-card-hand").style.transform = `rotate(${rot}deg)`;
       root.getElementById("mini-gauge-card-bar").style.transform = `rotate(${rot}deg)`;
 	  root.getElementById("mini-gauge-card-bar-line").style.stroke = this._computeSeverity(entityState, config.severity);
