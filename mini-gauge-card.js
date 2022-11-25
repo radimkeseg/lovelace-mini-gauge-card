@@ -42,6 +42,7 @@ class MiniGaugeCard extends HTMLElement {
         --base-unit: ${cardConfig.scale};
         height: calc(var(--base-unit)*80px);
         position: relative;
+	border: none;
       }
       .container{
         width: calc(var(--base-unit) * 100px);
