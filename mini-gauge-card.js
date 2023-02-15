@@ -42,6 +42,7 @@ class MiniGaugeCard extends HTMLElement {
         --base-unit: ${cardConfig.scale};
         height: calc(var(--base-unit)*80px);
         position: relative;
+	border: none;
       }
       .container{
         width: calc(var(--base-unit) * 100px);
@@ -70,65 +71,67 @@ class MiniGaugeCard extends HTMLElement {
   <g
      id="layer1"
      transform="translate(0,-45)">
-
-	<clipPath id="mini-gauge-card-bar" style="transition-duration: 2s">
-	   <!-- the rotate(?deg) is about to be dynamically updated -->
-	   <path style="fill:#ffffff;stroke:none;fill-opacity:1" d="M 40,140 H 160 c 0,0 0,60 -60,60 -60,0 -60,-60 -60,-60"/>
-	</clipPath>	
-	 
+    <clipPath
+       id="mini-gauge-card-bar">
+      <!-- the rotate(?deg) is about to be dynamically updated -->
+      <path
+         style="fill:#ffffff;fill-opacity:1;stroke:none"
+         d="m 40,140 h 120 c 0,0 0,60 -60,60 -60,0 -60,-60 -60,-60"
+         id="path848" />
+    </clipPath>
     <path
        style="fill:none;stroke:#ff0000;stroke-width:5;stroke-opacity:1"
        d="m 45,140 c 0,-72 110,-72 110,0"
-       id="mini-gauge-card-bar-line" clip-path="url(#mini-gauge-card-bar)" fill="red"/>
-	   
-    
-	<text class="mini-gauge-card-text"
-       style="font-style:normal;font-weight:normal;font-size:10px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;"
+       id="mini-gauge-card-bar-line"
+       clip-path="url(#mini-gauge-card-bar)"
+       fill="red" />
+    <text
+       class="mini-gauge-card-text"
+       style="font-style:normal;font-weight:normal;font-size:10px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px"
        x="45"
        y="158"
        id="mini-gauge-card-min"
-	   text-anchor="middle">?</text>
-    <text class="mini-gauge-card-text"
-       style="font-style:normal;font-weight:normal;font-size:10px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;"
+       text-anchor="middle">?</text>
+    <text
+       class="mini-gauge-card-text"
+       style="font-style:normal;font-weight:normal;font-size:10px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px"
        x="155"
        y="158"
        id="mini-gauge-card-max"
-	   text-anchor="middle">?</text>
-    <text class="mini-gauge-card-text"
-       style="font-style:normal;font-weight:bold;font-size:20px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;"
+       text-anchor="middle">?</text>
+    <text
+       class="mini-gauge-card-text"
+       style="font-style:normal;font-weight:bold;font-size:20px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px"
        x="100"
-       y="120"
+       y="140"
        id="mini-gauge-card-mean"
-	   text-anchor="middle">?</text>	 
-    <text class="mini-gauge-card-text"
-       style="font-style:normal;font-weight:bold;font-size:12px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;"
+       text-anchor="middle">?</text>
+    <text
+       class="mini-gauge-card-text"
+       style="font-style:normal;font-weight:bold;font-size:12px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px"
        x="100"
        y="158"
        id="mini-gauge-card-name"
-	   text-anchor="middle">?</text>
-	   
+       text-anchor="middle">?</text>
     <path
        style="fill:none;stroke:#aaaaaa;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2.5, 6;stroke-dashoffset:0;stroke-opacity:1"
        d="m 45,140 c 0,-72 110,-72 110,0"
        id="gauge" />
-   <g
+    <g
        id="mini-gauge-card-hand">
       <path
          id="mini-gauge-card-hand-shape"
-         d="m 110,140 -10,5 -55,-5 55,-5 z"
-         style="fill:#222222;fill-opacity:1;stroke:#dddddd;stroke-width:1px;stroke-opacity:1" />
-      <path
-         id="mini-gauge-card-hand-shade"
-         d="m 110,140 -10,5 -55,-5 C 62,140 105,140 105,140 Z"
-         style="fill:#888888;fill-opacity:1;stroke:none;" />
+         d="m 64,142 -19,-2 19,-2 z"
+         style="fill:#222222;fill-opacity:1;stroke:#dddddd;stroke-width:1px;stroke-opacity:1"
+         sodipodi:nodetypes="cccc" />
     </g>
     <circle
-       style="opacity:1;fill:#666666;fill-opacity:1;fill-rule:nonzero;stroke:#999999;stroke-width:2;stroke-opacity:1"
+       style="opacity:1;fill:#000000;fill-opacity:0;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-opacity:0"
        id="dot"
        cx="100"
        cy="140"
-       r="2.5" />	 
-   </g>
+       r="2.5" />
+  </g>
 			</svg>
 		</div>	
 	</div>	
