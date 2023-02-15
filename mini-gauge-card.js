@@ -176,16 +176,16 @@ class MiniGaugeCard extends HTMLElement {
   _computeSeverity(stateValue, sections) {
     let numberValue = Number(stateValue);
 	const severityMap = {
-		red: "var(--label-badge-red)",
-		red_L: "var(--label-badge-red)",
-		red_H: "var(--label-badge-red)",
-		green: "var(--label-badge-green)",
-		green_L: "var(--label-badge-green)",
-		green_H: "var(--label-badge-green)",
-		yellow: "var(--label-badge-yellow)",
-		yellow_L: "var(--label-badge-yellow)",
-		yellow_H: "var(--label-badge-yellow)",
-		normal: "var(--label-badge-blue)",
+		red: "var(--error-color)",
+		red_L: "var(--error-color)",
+		red_H: "var(--error-color)",
+		green: "var(--success-color)",
+		green_L: "var(--success-color)",
+		green_H: "var(--success-color)",
+		yellow: "var(--warning-color)",
+		yellow_L: "var(--warning-color)",
+		yellow_H: "var(--warning-color)",
+		normal: "var(--info-color)",
 	};
     if (!sections) return severityMap["normal"];
     
